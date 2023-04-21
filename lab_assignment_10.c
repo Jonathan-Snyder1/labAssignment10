@@ -3,8 +3,6 @@
 #include <string.h>
 
 
-//trie
-
 typedef struct Trie {
     int flag;
     struct Trie *children[26];
@@ -41,10 +39,8 @@ int numberOfOccurrences(Trie *pTrie, char *word) {
         if (temp->children[index] == NULL) {
             return 0;
         }
-
         temp = temp->children[index];
     }
-
     return temp->flag;
 }
 
@@ -59,30 +55,22 @@ Trie *deallocateTrie(Trie *pTrie) {
     return NULL;
 }
 
-int main(void) {
-    Trie *trie = (Trie*)calloc(1, sizeof(Trie));
 
-    // read the number of words in the dictionary
-    /*int numWords;
-    scanf("%d", &numWords);
 
-    // parse line by line, and insert each word to the trie data structure
-    char word[100];
-    for (int i = 0; i < numWords; i++) {
-        scanf("%s", word);
-        insert(&trie, word);
-    }*/
-
-    // test the numberOfOccurrences function with some sample words
+int main(void)
+{
+    Trie *trie = (Trie*)calloc(1, sizeof(Trie)); // initialize root of Trie
+    //read the number of the words in the dictionary
+    // parse line  by line, and insert each word to the trie data structure
     char *pWords[] = {"notaword", "ucf", "no", "note", "corg"};
-    for (int i = 0; i < 5; i++) {
-        printf("%s: %d\n", pWords[i], numberOfOccurrences(trie, pWords[i]));
+    for (int i=0; i<5; i++)
+    {
+        insert(&trie, pWords[i]); // pass address of root
+        printf("\t%s : %d\n", pWords[i], numberOfOccurrences(trie, pWords[i]));
     }
-
     trie = deallocateTrie(trie);
-    if (trie != NULL) {
+    if (trie != NULL)
         printf("There is an error in this program\n");
-    }
-
     return 0;
 }
+
