@@ -1,7 +1,9 @@
-//trie
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+
+//trie
 
 typedef struct Trie {
     int flag;
